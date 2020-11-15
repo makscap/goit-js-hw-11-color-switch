@@ -117,45 +117,48 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/index.js":[function(require,module,exports) {
-console.log('Welcome');
-var colors = ['#FFFFFF', '#2196F3', '#4CAF50', '#FF9800', '#009688', '#795548']; //   const refs = {
+})({"js/colors.json":[function(require,module,exports) {
+module.exports = ["#FFFFFF", "#2196F3", "#4CAF50", "#FF9800", "#009688", "#795548"];
+},{}],"index.js":[function(require,module,exports) {
+"use strict";
 
+var _colors = _interopRequireDefault(require("./js/colors.json"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import './style.css';
+var backgroundInterval = null;
 var start = document.querySelector('button[data-action="start"]');
 var stop = document.querySelector('button[data-action="stop"]');
-var body = document.querySelector('body'); //   };
-
-console.log(start);
+var body = document.querySelector('body');
 start.addEventListener('click', onColorSwitchStart);
-stop.addEventListener('click', onColorSwitchStop);
-stop.disabled = true;
+stop.addEventListener('click', OnColorSwichStop);
+stop.disable = true;
 
-var randomIntegerFromInterval = function randomIntegerFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-function bgdSwitch() {
-  return body.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length - 1)];
+function bacgroundSwich() {
+  return body.style.backgroundColor = _colors.default[randomIntegerFromInterval(0, _colors.default.length - 1)];
 }
 
 ;
 
 function onColorSwitchStart() {
-  backgroundInterval = setInterval(bgdSwitch, 1000);
+  backgroundInterval = setInterval(bacgroundSwich, 1000);
   stop.disabled = false;
   start.disabled = true;
 }
 
 ;
 
-function onColorSwitchStop() {
+function OnColorSwichStop() {
   clearInterval(backgroundInterval);
   stop.disabled = true;
   start.disabled = false;
 }
 
-;
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var randomIntegerFromInterval = function randomIntegerFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+},{"./js/colors.json":"js/colors.json"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -183,7 +186,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49216" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54656" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -359,5 +362,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/index.js"], null)
-//# sourceMappingURL=/js.00a46daa.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/goit-js-hw-11-color-switch.e31bb0bc.js.map
